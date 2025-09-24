@@ -1,8 +1,16 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Zap, TrendingUp, Target, Award, Brain, PiggyBank } from "lucide-react"
-import Link from "next/link"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  ArrowRight,
+  Zap,
+  TrendingUp,
+  Target,
+  Award,
+  Brain,
+  PiggyBank,
+} from "lucide-react";
+import Link from "next/link";
 
 export default function LandingPage() {
   return (
@@ -17,23 +25,36 @@ export default function LandingPage() {
             <span className="text-xl font-bold text-foreground">Investory</span>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#features" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              href="#features"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               Features
             </Link>
-            <Link href="#demo" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              href="#demo"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               Demo
             </Link>
-            <Link href="#about" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link
+              href="#about"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+            >
               About
             </Link>
           </nav>
           <div className="flex items-center space-x-3">
-            <Button variant="ghost" size="sm">
-              Login
-            </Button>
-            <Button size="sm" className="bg-primary hover:bg-primary/90">
-              Sign Up
-            </Button>
+            <Link href="/auth">
+              <Button variant="ghost" size="sm">
+                Login
+              </Button>
+            </Link>
+            <Link href="/auth">
+              <Button size="sm" className="bg-primary hover:bg-primary/90">
+                Sign Up
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
@@ -49,24 +70,31 @@ export default function LandingPage() {
                   AI-Powered Financial Guidance
                 </Badge>
                 <h1 className="text-4xl lg:text-6xl font-bold text-balance leading-tight">
-                  Investory — Your AI <span className="text-primary">Micro-Spend</span> Tutor
+                  Investory — Your AI{" "}
+                  <span className="text-primary">Micro-Spend</span> Tutor
                 </h1>
                 <p className="text-xl text-muted-foreground text-pretty leading-relaxed">
-                  Turn tiny spends into smart savings & investments. Get instant AI nudges, weekly tutoring, and
-                  gamified progress tracking designed for Gen Z.
+                  Turn tiny spends into smart savings & investments. Get instant
+                  AI nudges, weekly tutoring, and gamified progress tracking
+                  designed for Gen Z.
                 </p>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  <Link href="/dashboard" className="flex items-center">
-                    Try Demo
+                <Link href="/auth">
+                  <Button
+                    size="lg"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  >
+                    Get Started
                     <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline">
-                  Sign Up Free
-                </Button>
+                  </Button>
+                </Link>
+                <Link href="/auth">
+                  <Button size="lg" variant="outline">
+                    Sign Up Free
+                  </Button>
+                </Link>
               </div>
 
               <div className="flex items-center space-x-6 text-sm text-muted-foreground">
@@ -99,10 +127,12 @@ export default function LandingPage() {
       <section id="features" className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-3xl lg:text-4xl font-bold text-balance">Smart Financial Guidance Made Simple</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-balance">
+              Smart Financial Guidance Made Simple
+            </h2>
             <p className="text-xl text-muted-foreground text-pretty max-w-2xl mx-auto">
-              Our AI analyzes your spending patterns and provides personalized insights to help you save and invest
-              smarter.
+              Our AI analyzes your spending patterns and provides personalized
+              insights to help you save and invest smarter.
             </p>
           </div>
 
@@ -114,7 +144,8 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-lg font-semibold">Instant AI Nudges</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Get real-time spending alerts and smart suggestions to optimize your financial decisions.
+                  Get real-time spending alerts and smart suggestions to
+                  optimize your financial decisions.
                 </p>
               </CardContent>
             </Card>
@@ -126,7 +157,8 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-lg font-semibold">Weekly Tutoring</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Receive personalized financial education and actionable investment advice every week.
+                  Receive personalized financial education and actionable
+                  investment advice every week.
                 </p>
               </CardContent>
             </Card>
@@ -138,7 +170,8 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-lg font-semibold">Gamified Savings</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Earn badges, maintain streaks, and track progress with engaging gamification elements.
+                  Earn badges, maintain streaks, and track progress with
+                  engaging gamification elements.
                 </p>
               </CardContent>
             </Card>
@@ -150,7 +183,8 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-lg font-semibold">Investment Advice</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Get personalized micro-investment recommendations based on your spending patterns.
+                  Get personalized micro-investment recommendations based on
+                  your spending patterns.
                 </p>
               </CardContent>
             </Card>
@@ -163,9 +197,12 @@ export default function LandingPage() {
         <div className="container mx-auto px-4">
           <Card className="bg-gradient-to-r from-primary/5 to-accent/5 border-primary/20">
             <CardContent className="p-12 text-center space-y-6">
-              <h2 className="text-3xl lg:text-4xl font-bold text-balance">Ready to Transform Your Financial Future?</h2>
+              <h2 className="text-3xl lg:text-4xl font-bold text-balance">
+                Ready to Transform Your Financial Future?
+              </h2>
               <p className="text-xl text-muted-foreground text-pretty max-w-2xl mx-auto">
-                Join thousands of Gen Z users who are already saving smarter and investing better with Investory.
+                Join thousands of Gen Z users who are already saving smarter and
+                investing better with Investory.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-primary hover:bg-primary/90">
@@ -195,20 +232,30 @@ export default function LandingPage() {
                 <span className="text-xl font-bold">Investory</span>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Your AI buddy for smarter spending and better financial decisions.
+                Your AI buddy for smarter spending and better financial
+                decisions.
               </p>
             </div>
 
             <div className="space-y-4">
               <h4 className="font-semibold">Product</h4>
               <div className="space-y-2 text-sm">
-                <Link href="#" className="block text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Features
                 </Link>
-                <Link href="#" className="block text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Demo
                 </Link>
-                <Link href="#" className="block text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Pricing
                 </Link>
               </div>
@@ -217,13 +264,22 @@ export default function LandingPage() {
             <div className="space-y-4">
               <h4 className="font-semibold">Company</h4>
               <div className="space-y-2 text-sm">
-                <Link href="#" className="block text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
                   About
                 </Link>
-                <Link href="#" className="block text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Contact
                 </Link>
-                <Link href="#" className="block text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Careers
                 </Link>
               </div>
@@ -232,13 +288,22 @@ export default function LandingPage() {
             <div className="space-y-4">
               <h4 className="font-semibold">Legal</h4>
               <div className="space-y-2 text-sm">
-                <Link href="#" className="block text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Privacy Policy
                 </Link>
-                <Link href="#" className="block text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Terms of Service
                 </Link>
-                <Link href="#" className="block text-muted-foreground hover:text-foreground transition-colors">
+                <Link
+                  href="#"
+                  className="block text-muted-foreground hover:text-foreground transition-colors"
+                >
                   Cookie Policy
                 </Link>
               </div>
@@ -246,10 +311,13 @@ export default function LandingPage() {
           </div>
 
           <div className="border-t border-border/40 mt-12 pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 Investory. All rights reserved. Your AI buddy for smarter spending.</p>
+            <p>
+              &copy; 2025 Investory. All rights reserved. Your AI buddy for
+              smarter spending.
+            </p>
           </div>
         </div>
       </footer>
     </div>
-  )
+  );
 }
