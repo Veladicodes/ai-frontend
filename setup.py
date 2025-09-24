@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name = 'Medi_Chat',
+    name = 'Invest Bot',
     author= 'Samuel Subramanian',
     author_email= 'samsuboff@gmail.com',
     install_requires= [],
