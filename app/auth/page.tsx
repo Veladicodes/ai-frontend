@@ -53,10 +53,21 @@ export default function AuthPage() {
             </Link>
           </div>
           <div>
-            <CardTitle className="text-2xl">Welcome to Investory</CardTitle>
+            <CardTitle className="text-2xl">Start Your Financial Journey</CardTitle>
             <p className="text-muted-foreground mt-2">
-              Sign in with Google to continue your financial journey
+              Join thousands of young adults mastering their money with AI-powered spending insights
             </p>
+            <div className="flex flex-wrap justify-center gap-2 mt-3">
+              <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">
+                Ages 18-25
+              </span>
+              <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">
+                Spending Analysis
+              </span>
+              <span className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-full">
+                Personal Finance Tutor
+              </span>
+            </div>
           </div>
         </CardHeader>
 
@@ -95,8 +106,13 @@ export default function AuthPage() {
             {isLoading ? "Signing in..." : "Continue with Google"}
           </Button>
 
-          <div className="text-center text-sm text-muted-foreground">
-            By signing in, you agree to our Terms of Service and Privacy Policy
+          <div className="text-center space-y-2">
+            <div className="text-sm text-muted-foreground">
+              By signing in, you agree to our Terms of Service and Privacy Policy
+            </div>
+            <div className="text-xs text-muted-foreground/80">
+              🎯 Perfect for college students and young professionals starting their financial journey
+            </div>
           </div>
         </CardContent>
       </Card>

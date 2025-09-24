@@ -17,6 +17,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
     async signIn({ user, account, profile }) {
@@ -28,9 +29,11 @@ export const authOptions: NextAuthOptions = {
           const existingUser = await User.findOne({ email: user.email });
           
           if (existingUser) {
-            // Update lastLogin for existing user
+            // Update lastLogin and image for existing user
             await User.findByIdAndUpdate(existingUser._id, {
               lastLogin: new Date(),
+              image: user.image, // Update image in case it changed
+              name: user.name, // Update name in case it changed
             });
           } else {
             // Create new user
@@ -50,15 +53,20 @@ export const authOptions: NextAuthOptions = {
       }
       return true;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
+        token.picture = user.image; // Ensure image is in token
       }
       return token;
     },
     async session({ session, token }) {
       if (token && session.user) {
         (session.user as any).id = token.id as string;
+        // Ensure image is properly set in session
+        if (token.picture) {
+          session.user.image = token.picture as string;
+        }
       }
       return session;
     },
