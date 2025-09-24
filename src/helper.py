@@ -1,5 +1,5 @@
 from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from typing import List
 from langchain.schema import Document
 # Add this line below to import the missing class
@@ -47,3 +47,7 @@ def download_embeddings():
         model_name=model_name
     )
     return embeddings
+
+def get_hf_embeddings():
+    """Alias for download_embeddings to maintain compatibility with app.py"""
+    return download_embeddings()

@@ -1,11 +1,10 @@
-# app.py
 from flask import Flask, render_template, jsonify, request
 from dotenv import load_dotenv
 import os, traceback
-from langchain.vectorstores import Pinecone as LangPinecone
+from langchain_pinecone import PineconeVectorStore
 from src.helper import get_hf_embeddings
 from src.prompt import system_prompt
-import pinecone
+from pinecone import Pinecone
 
 # LLM client import - keep same as your environment. Example:
 # from langchain_google_genai import ChatGoogleGenerativeAI
@@ -17,22 +16,18 @@ from langchain.prompts import PromptTemplate
 
 load_dotenv()
 PINECONE_API_KEY = os.environ.get("PINECONE_API_KEY")
-PINECONE_ENV = os.environ.get("PINECONE_ENV", None)
-INDEX_NAME = os.environ.get("PINECONE_INDEX", "medi-chat")
+INDEX_NAME = os.environ.get("PINECONE_INDEX", "invest-bot")
 
 if not PINECONE_API_KEY:
     raise RuntimeError("PINECONE_API_KEY not set in .env")
 
 # init pinecone
-if PINECONE_ENV:
-    pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_ENV)
-else:
-    pinecone.init(api_key=PINECONE_API_KEY)
+pc = Pinecone(api_key=PINECONE_API_KEY)
 
 print("Connecting to Pinecone index:", INDEX_NAME)
 embeddings = get_hf_embeddings()
 # Connect to existing index (LangChain wrapper)
-docsearch = LangPinecone.from_existing_index(index_name=INDEX_NAME, embedding=embeddings)
+docsearch = PineconeVectorStore.from_existing_index(index_name=INDEX_NAME, embedding=embeddings)
 retriever = docsearch.as_retriever(search_kwargs={"k": 4})
 
 # Chat model init
@@ -66,15 +61,15 @@ app = Flask(__name__)
 def index():
     return render_template("chat.html")  # reuse your existing chat front-end
 
-@app.route("/chat", methods=["POST"])
+@app.route("/get", methods=["POST"])
 def chat_endpoint():
     if not qa_chain:
-        return jsonify({"error": "Chat not available"}), 503
+        return "Chat not available", 503
 
-    payload = request.get_json() or {}
-    user_msg = payload.get("msg", "")
+    # Handle form data instead of JSON
+    user_msg = request.form.get("msg", "")
     if not user_msg:
-        return jsonify({"error": "msg required"}), 400
+        return "Message required", 400
 
     try:
         # run the RAG pipeline
@@ -82,16 +77,12 @@ def chat_endpoint():
         resp = qa_chain({"query": user_msg})
         # Depending on chain, result key may be 'result' or 'answer'
         answer = resp.get("result") or resp.get("answer") or str(resp)
-        sources = []
-        for d in resp.get("source_documents", []):
-            sources.append({
-                "source": d.metadata.get("source"),
-                "snippet": d.page_content[:300]
-            })
-        return jsonify({"answer": answer, "sources": sources})
+        
+        # Return just the answer text for the frontend to display
+        return answer
     except Exception as e:
         traceback.print_exc()
-        return jsonify({"error": str(e)}), 500
+        return f"Error: {str(e)}", 500
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080, debug=True)
