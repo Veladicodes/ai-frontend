@@ -11,6 +11,7 @@ import {
   Award,
   Brain,
   PiggyBank,
+  MessageCircle,
 } from "lucide-react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
@@ -57,6 +58,12 @@ export default function LandingPage() {
                     Analyze Spending
                   </Button>
                 </Link>
+                <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer">
+                  <Button size="lg" variant="outline" className="bg-gradient-to-r from-blue-500 to-purple-600 text-white border-0 hover:from-blue-600 hover:to-purple-700">
+                    <MessageCircle className="w-4 h-4 mr-2" />
+                    AI Chatbot
+                  </Button>
+                </a>
                 <Link href="/auth">
                   <Button size="lg" variant="outline">
                     Sign Up Free
